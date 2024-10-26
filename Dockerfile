@@ -12,4 +12,5 @@ RUN pip install -r requirements.txt
 COPY . /app/
 
 # Ejecuta Gunicorn en el servidor
-CMD ["gunicorn", "monolito_project.monolito.wsgi:application", "--bind", "0.0.0.0:8000"]
+
+CMD ["gunicorn", "monolito.wsgi:application", "--bind", "0.0.0.0:8000"]

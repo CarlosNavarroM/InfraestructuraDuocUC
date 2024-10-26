@@ -19,11 +19,11 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: django_app
-    command: gunicorn monolito_project.monolito.wsgi:application --bind 0.0.0.0:8000
+    command: gunicorn monolito.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - .:/app
     environment:
-      - DJANGO_SETTINGS_MODULE=monolito_project.settings
+      - DJANGO_SETTINGS_MODULE=monolito.settings
       - MYSQL_HOST=db
       - MYSQL_PORT=3306
       - MYSQL_USER=myuser
