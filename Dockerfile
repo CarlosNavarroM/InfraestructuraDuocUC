@@ -1,16 +1,25 @@
-# Usa una imagen base de Python
-FROM python:3.12
+# Usa una imagen base con Python
+FROM python:3.9-slim
 
-# Establece el directorio de trabajo en el contenedor
+# Instalar dependencias necesarias para `mysqlclient`
+RUN apt-get update && apt-get install -y \
+    gcc \
+    default-libmysqlclient-dev \
+    pkg-config \
+    && rm -rf /var/lib/apt/lists/*
+
+# Establece el directorio de trabajo
 WORKDIR /app
 
-# Copia el archivo de requerimientos y lo instala
-COPY requirements.txt /app/
-RUN pip install -r requirements.txt
+# Copia los archivos de requerimientos e instálalos
+COPY requirements.txt requirements.txt
+RUN pip install --no-cache-dir --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
-# Copia el resto del proyecto al contenedor
-COPY . /app/
+# Copia todo el código al contenedor
+COPY . .
 
-# Ejecuta Gunicorn en el servidor
+# Exponer el puerto 8000 para el servidor de desarrollo
+EXPOSE 8000
 
+# Comando por defecto
 CMD ["gunicorn", "monolito.wsgi:application", "--bind", "0.0.0.0:8000"]

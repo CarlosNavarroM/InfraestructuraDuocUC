@@ -10,7 +10,7 @@ services:
       MYSQL_USER: myuser
       MYSQL_PASSWORD: mypassword
     ports:
-      - "3306:3306"
+      - "3307:3306"  # Exponer el puerto 3307 en el host para evitar conflictos
     volumes:
       - mysql_data:/var/lib/mysql
 
@@ -23,12 +23,13 @@ services:
     volumes:
       - .:/app
     environment:
-      - DJANGO_SETTINGS_MODULE=monolito.settings
-      - MYSQL_HOST=db
-      - MYSQL_PORT=3306
-      - MYSQL_USER=myuser
-      - MYSQL_PASSWORD=mypassword
-      - MYSQL_DATABASE=mydatabase
+      DJANGO_SECRET_KEY: "tu_secreto_aqui"
+      DJANGO_DEBUG: "True"
+      MYSQL_DATABASE: "mydatabase"
+      MYSQL_USER: "myuser"
+      MYSQL_PASSWORD: "mypassword"
+      MYSQL_HOST: "db"
+      MYSQL_PORT: "3306"  # Internamente usa el puerto 3306
     depends_on:
       - db
     expose:
