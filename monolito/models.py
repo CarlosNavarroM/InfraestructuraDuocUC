@@ -1,12 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.core.files.storage import FileSystemStorage
+
+# Configuración de almacenamiento personalizado para manejar permisos
+media_storage = FileSystemStorage(location='/app/media', base_url='/media/')
 
 class Producto(models.Model):
     nombre = models.CharField(max_length=100)
     descripcion = models.TextField(blank=True, null=True)  # Descripción del producto
     precio = models.DecimalField(max_digits=10, decimal_places=2)  # Precio en CLP
-    imagen = models.ImageField(upload_to='productos/', blank=True, null=True)  # Imagen del producto
+    imagen = models.ImageField(storage=media_storage, upload_to='productos/', blank=True, null=True)  # Imagen del producto
     stock = models.PositiveIntegerField(default=0)  # Cantidad disponible
     valoracion_promedio = models.DecimalField(
         max_digits=3, 

@@ -18,6 +18,12 @@ RUN pip install --no-cache-dir --upgrade pip && pip install --no-cache-dir -r re
 # Copia todo el código al contenedor
 COPY . .
 
+# Ejecuta el comando para recopilar archivos estáticos
+RUN python manage.py collectstatic --noinput
+
+# (Opcional) Ejecuta las migraciones de base de datos
+RUN python manage.py migrate --noinput
+
 # Exponer el puerto 8000 para el servidor de desarrollo
 EXPOSE 8000
 
