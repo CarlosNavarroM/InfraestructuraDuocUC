@@ -2,6 +2,12 @@ from pathlib import Path
 import os
 LOGIN_URL = '/login/'
 
+# settings.py
+TRANSBANK_COMMERCE_CODE = "597055555532"  # Código de comercio de pruebas
+TRANSBANK_API_KEY = "579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C"  # Llave secreta de pruebas
+TRANSBANK_ENVIRONMENT = "integration"  # Usar 'integration' para pruebas
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 

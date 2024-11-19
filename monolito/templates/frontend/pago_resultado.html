@@ -1,0 +1,13 @@
+{% extends 'frontend/base.html' %}
+
+{% block title %}Resultado del Pago{% endblock %}
+
+{% block content %}
+<h1>{{ mensaje }}</h1>
+{% if response %}
+    <p>Estado: {{ response.status }}</p>
+    <p>Monto: ${{ response.amount }}</p>
+    <p>Orden de Compra: {{ response.buy_order }}</p>
+{% endif %}
+<a href="{% url 'listar_productos' %}" class="btn btn-primary">Volver a la Tienda</a>
+{% endblock %}

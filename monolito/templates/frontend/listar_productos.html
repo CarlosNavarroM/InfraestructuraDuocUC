@@ -21,7 +21,11 @@
                     <strong>Precio:</strong> ${{ producto.precio|intcomma }}<br>
                     <strong>Valoración:</strong> ⭐{{ producto.valoracion }}<br>
                 </p>
-                <a href="{% url 'agregar_al_carrito' producto.id %}" class="btn btn-success btn-block">Agregar al carrito</a>
+                <form method="post" action="{% url 'agregar_al_carrito' producto.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success btn-block">Agregar al carrito</button>
+                </form>
+                
             </div>
         </div>
     </div>
