@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'monolito',
 ]
 
@@ -59,8 +60,8 @@ DATABASES = {
         'NAME': 'mydatabase',  # Tu nombre de base de datos
         'USER': 'myuser',       # Tu usuario de base de datos
         'PASSWORD': 'mypassword',  # Tu contraseña de base de datos
-        'HOST': '127.0.0.1',    # Conexión local
-        'PORT': '3307',         # Puerto publicado por el contenedor
+        'HOST': '127.0.0.1',    # Conexión docker 'db' / para desarrollo 127.0.0.1
+        'PORT': '3307',         # Puerto docker '3306' / para desarrollo 3307
     }
 }
 
@@ -80,7 +81,7 @@ USE_TZ = True
 
 # Static files
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'monolito' / 'static']
+STATICFILES_DIRS = [BASE_DIR / 'monolito' / 'templates' / 'frontend' / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Media files

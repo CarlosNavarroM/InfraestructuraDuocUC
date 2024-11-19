@@ -1,9 +1,56 @@
 {% extends 'frontend/base.html' %}
 
-{% block title %}Inicio{% endblock %}
+{% load static %}
+
+{% block title %}Inicio - Compra y Ahorra{% endblock %}
 
 {% block content %}
-<h1>Bienvenido a Compra y Ahorra</h1>
-<p>Explora nuestros productos y encuentra los mejores precios.</p>
-<a href="{% url 'listar_productos' %}" class="btn btn-primary">Ver Productos</a>
+<link rel="stylesheet" href="{% static 'assets/css/home.css' %}">
+<div class="container py-4">
+    <!-- Banner de Bienvenida -->
+    <div class="jumbotron text-center p-0 rounded">
+        <h1 class="display-4">Bienvenido a <span class="text-primary">Compra y Ahorra</span></h1>
+        <p class="lead">Explora nuestros productos y encuentra los mejores precios en todo lo que necesitas.</p>
+        <img src="{% static 'assets/image/Imagen1.png' %}" class="img-fluid rounded my-4" alt="Home" style="max-height: 300px;">
+        <a href="{% url 'listar_productos' %}" class="btn btn-success btn-lg">Ver Productos</a>
+    </div>
+
+    <!-- Categorías destacadas -->
+    <div class="mt-5">
+        <h2 class="text-center mb-4">Categorías Destacadas</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card h-100 text-center shadow-sm">
+                    <img src="{% static 'assets/image/electronicos.jpg' %}" class="card-img-top" alt="Categoría Electrónicos" style="max-height: 150px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Electrónicos</h5>
+                        <p class="card-text">Encuentra los últimos gadgets al mejor precio.</p>
+                        <a href="{% url 'listar_productos' %}" class="btn btn-outline-primary btn-sm">Ver Productos</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card h-100 text-center shadow-sm">
+                    <img src="{% static 'assets/image/hogar.jpg' %}" class="card-img-top" alt="Categoría Hogar" style="max-height: 150px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Hogar</h5>
+                        <p class="card-text">Todo lo que necesitas para tu casa en un solo lugar.</p>
+                        <a href="{% url 'listar_productos' %}" class="btn btn-outline-primary btn-sm">Ver Productos</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card h-100 text-center shadow-sm">
+                    <img src="{% static 'assets/image/moda.jpg' %}" class="card-img-top" alt="Categoría Moda" style="max-height: 150px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">Moda</h5>
+                        <p class="card-text">Las mejores tendencias en ropa y accesorios.</p>
+                        <a href="{% url 'listar_productos' %}" class="btn btn-outline-primary btn-sm">Ver Productos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
 {% endblock %}

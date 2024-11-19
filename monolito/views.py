@@ -48,19 +48,25 @@ def listar_productos(request):
     productos = Producto.objects.all()
     return render(request, 'frontend/listar_productos.html', {'productos': productos})
 
-
 @login_required
 def agregar_al_carrito(request, producto_id):
     producto = get_object_or_404(Producto, id=producto_id)
+    if producto.stock <= 0:
+        return redirect('listar_productos')  # Redirigir si no hay stock disponible
+
     carrito, _ = Carrito.objects.get_or_create(usuario=request.user)
     carrito_producto, created = CarritoProducto.objects.get_or_create(
         carrito=carrito, producto=producto
     )
     if not created:
-        carrito_producto.cantidad += 1
+        if carrito_producto.cantidad < producto.stock:
+            carrito_producto.cantidad += 1
+        else:
+            return redirect('listar_productos')  # Redirigir si ya alcanzó el stock
+    else:
+        carrito_producto.cantidad = 1
     carrito_producto.save()
     return redirect('ver_carrito')
-
 
 @login_required
 def ver_carrito(request):
