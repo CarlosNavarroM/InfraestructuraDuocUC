@@ -66,8 +66,8 @@ DATABASES = {
         'NAME': 'mydatabase',  # Tu nombre de base de datos
         'USER': 'myuser',       # Tu usuario de base de datos
         'PASSWORD': 'mypassword',  # Tu contraseña de base de datos
-        'HOST': '127.0.0.1',    # Conexión docker 'db' / para desarrollo 127.0.0.1
-        'PORT': '3307',         # Puerto docker '3306' / para desarrollo 3307
+        'HOST': 'db',    # Conexión docker 'db' / para desarrollo 127.0.0.1
+        'PORT': '3306',         # Puerto docker '3306' / para desarrollo 3307
     }
 }
 
@@ -90,9 +90,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'monolito' / 'templates' / 'frontend' / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# Media files
+# Media files (para imágenes y otros uploads)
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'monolito' / 'assets' / 'image'
+MEDIA_ROOT = BASE_DIR / 'monolito' / 'templates' / 'frontend' / 'static' / 'assets' / 'image'
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
